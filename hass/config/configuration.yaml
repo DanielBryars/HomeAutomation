@@ -1,0 +1,77 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+lovelace:
+  mode: yaml
+
+tts:
+  - platform: google_translate
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+
+panel_iframe:
+  glances:
+    title: 'Glances'
+    url: 'http://192.168.1.106:61208/'
+    icon: mdi:server-network
+  portainer:
+    title: 'Portainer'
+    url: 'http://192.168.1.106:9000/'
+    icon: mdi:docker
+
+
+####### Addons #########
+
+hacs:
+  token: c499206e0b1d7c7450bd81a1dbceaf4481d22716
+  appdaemon: True
+  python_script: True
+  theme: True
+
+
+####### Sensors ########
+
+sun:
+
+weather:
+  - platform: darksky
+    api_key: !secret darkSkyAPI
+    mode: daily
+
+sensor sma:
+  - platform: sma
+    host: 192.168.1.104
+    password: !secret smaPassword
+    group: installer
+
+######## Monitoring ######
+sensor monitoring:
+  - platform: version
+  - platform: uptime
+  - platform: glances
+    name: "host"
+    host: 192.168.1.106
+    version: 3
+    resources:
+      - docker_active
+      - docker_cpu_use
+      - docker_memory_use
+      - cpu_temp
+      - cpu_use_percent
+      - swap_use_percent
+      - swap_use
+      - swap_free
+      - memory_use_percent
+      - memory_use
+      - memory_free
+      - disk_use_percent
+      - disk_use
+      - disk_free
+

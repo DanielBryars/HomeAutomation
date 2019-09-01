@@ -1,0 +1,137 @@
+cch:
+  options: clock
+resources:
+  - type: module
+    url: /community_plugin/weather-card/weather-card.js
+  - type: module
+    url: /community_plugin/compact-custom-header/compact-custom-header.js
+  - type: module
+    url: /community_plugin/mini-graph-card/mini-graph-card-bundle.js
+  - type: js
+    url: /community_plugin/bar-card/bar-card.js
+  - type: js
+    url: /community_plugin/vertical-stack-in-card/vertical-stack-in-card.js
+  - type: js
+    url: /community_plugin/bar-card/bar-card.js
+  - url: /community_plugin/power-wheel-card/power-wheel-card.js
+    type: module
+  - url: /community_plugin/button-card/button-card.js
+    type: module
+title: Home
+views:
+  - badges:
+    cards:
+      - entity: weather.dark_sky
+        type: custom:weather-card
+        current: true
+        details: true
+        forecast: true
+
+      - type: custom:mini-graph-card
+        entities:
+         - sensor.pv_power
+        icon: 'mdi:memory'
+        name: PV Power
+        show:
+          extrema: true
+      - type: "custom:button-card"
+        entity: switch.light_bank_1_pin_08
+        name: Den
+        icon: mdi:home
+        show_state: true
+    path: default_view
+    title: Home
+  - badges:
+    cards:
+      - cards:
+          - entities:
+              - entity: sensor.current_version
+                name: HASS version
+              - entity: binary_sensor.updater
+                name: HASS Update available
+              - entity: sensor.uptime
+                icon: 'mdi:clock'
+                name: Up time
+              - entity: sensor.host_containers_active
+                name: Active containers
+            show_header_toggle: false
+            title: Host
+            type: entities
+          - cards:
+              - color_thresholds:
+                  - color: '#40bf40'
+                    value: 0
+                  - color: '#ffde00'
+                    value: 50
+                  - color: '#bf4040'
+                    value: 80
+                entities:
+                  - entity: sensor.host_cpu_used
+                    name: CPU
+                icon: 'mdi:memory'
+                show:
+                  extrema: true
+                type: 'custom:mini-graph-card'
+              - color_thresholds:
+                  - color: '#40bf40'
+                    value: 0
+                  - color: '#ffde00'
+                    value: 60
+                  - color: '#bf4040'
+                    value: 80
+                decimals: 0
+                entities:
+                  - entity: sensor.host_cpu_temp
+                    name: CPU Temperature
+                show:
+                  extrema: true
+                type: 'custom:mini-graph-card'
+            type: horizontal-stack
+          - align: split
+            background_style:
+              background: '#000'
+              opacity: 0.05
+            columns: 1
+            entities:
+              - entity: sensor.host_disk_used_percent
+                icon: 'mdi:harddisk'
+                severity:
+                  - color: '#40bf40'
+                    value: 50
+                  - color: '#ffde00'
+                    value: 80
+                  - color: '#bf4040'
+                    value: 95
+                title: HDD
+              - entity: sensor.host_ram_used_percent
+                icon: 'mdi:memory'
+                severity:
+                  - color: '#40bf40'
+                    value: 20
+                  - color: var(--primary-color)
+                    value: 50
+                  - color: '#bf4040'
+                    value: 90
+                title: RAM
+            entity_config: true
+            height: 40px
+            icon_style:
+              filter: none
+              height: 34px
+              width: 34px
+            padding: 5px
+            rounding: 5px
+            show_icon: true
+            title_position: inside
+            title_style:
+              color: var(--primary-text-color)
+              font-weight: normal
+              text-shadow: none
+            type: 'custom:bar-card'
+            value_style:
+              color: var(--primary-text-color)
+              font-size: 18px
+              font-weight: normal
+              text-shadow: none
+        type: 'custom:vertical-stack-in-card'
+    title: System
