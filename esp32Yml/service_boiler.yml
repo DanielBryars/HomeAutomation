@@ -1,0 +1,34 @@
+esphome:
+  name: service_boiler2
+  platform: ESP32
+  board: esp32-poe
+
+#wifi:
+#  ssid: "TP-Link_30E3"
+#  password: "23419476"
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  power_pin: GPIO12
+
+# Enable logging
+logger:
+  level: debug
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+switch:
+  - platform: gpio
+    name: "Hot Water"
+    id: hot_water
+    pin:
+      number: 2
+      inverted: true # relays are active low
+

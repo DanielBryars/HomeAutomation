@@ -1,0 +1,436 @@
+esphome:
+  name: service_lights
+  platform: ESP32
+  board: esp32-poe
+#  includes:
+#    - MCP23S17.h
+
+ethernet:
+  type: LAN8720
+  mdc_pin: GPIO23
+  mdio_pin: GPIO18
+  clk_mode: GPIO17_OUT
+  phy_addr: 0
+  power_pin: GPIO12
+
+# Enable logging
+logger:
+#  level: debug
+
+# Enable Home Assistant API
+api:
+
+ota:
+
+# Enable SPI on default pins
+#spi:
+#  clk_pin: GPIO13 # esp32 EXT2 pin 10
+#  mosi_pin: GPIO14 # esp32 EXT2 pin 9
+#  miso_pin: GPIO15 # esp32 EXT2 pin 8
+
+#custom_component:
+#- lambda: |-
+#    auto my_custom = new MCP23S17();
+#    return {my_custom};
+
+i2c:
+  sda: GPIO13
+  scl: GPIO16
+  scan: False
+  frequency: 100kHz
+  
+mcp23017:
+  - id: 'mcp23017_lights_20'
+    address: 0x20 #0,0,0
+  - id: 'mcp23017_lights_21'
+    address: 0x21 #0,1,0
+  - id: 'mcp23017_lights_22'
+    address: 0x22 #0,0,1
+
+switch:
+# Bank 0
+  - platform: gpio
+    name: "Light Bank 0 Pin #00"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 0
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #01"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 1
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #02"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 2
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #03"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 3
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #04"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 4
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #05"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 5
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #06"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 6
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #07"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 7
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #08"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 8
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #09"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 9
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #10"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 10
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #11"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 11
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #12"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 12
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #13"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 13
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #14"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 14
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 0 Pin #15"
+    pin:
+      mcp23017: mcp23017_lights_20
+      number: 15
+      mode: OUTPUT
+      inverted: True
+
+# Bank 1
+  - platform: gpio
+    name: "Light Bank 1 Pin #00"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 0
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #01"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 1
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #02"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 2
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #03"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 3
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #04"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 4
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #05"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 5
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #06"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 6
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #07"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 7
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #08"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 8
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #09"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 9
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #10"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 10
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #11"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 11
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #12"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 12
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #13"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 13
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #14"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 14
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 1 Pin #15"
+    pin:
+      mcp23017: mcp23017_lights_21
+      number: 15
+      mode: OUTPUT
+      inverted: True
+
+# Bank 2
+  - platform: gpio
+    name: "Light Bank 2 Pin #00"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 0
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #01"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 1
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #02"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 2
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #03"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 3
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #04"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 4
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #05"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 5
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #06"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 6
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #07"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 7
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #08"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 8
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #09"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 9
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #10"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 10
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #11"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 11
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #12"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 12
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #13"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 13
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #14"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 14
+      mode: OUTPUT
+      inverted: True
+
+  - platform: gpio
+    name: "Light Bank 2 Pin #15"
+    pin:
+      mcp23017: mcp23017_lights_22
+      number: 15
+      mode: OUTPUT
+      inverted: True
